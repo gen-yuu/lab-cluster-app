@@ -1,21 +1,23 @@
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring-stack
+  name: ingress-nginx
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: "https://github.com/gen-yuu/lab-cluster-app.git"
     targetRevision: HEAD
-    path: apps/monitoring
-    directory:
-      recurse: true
+    path: charts/ingress-nginx
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: argocd
+    namespace: ingress-nginx
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

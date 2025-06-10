@@ -1,0 +1,16 @@
+---
+ingress-nginx:
+  controller:
+    # NodeAffinityの設定
+    nodeAffinity:
+      # 優先的に配置
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          preference:
+            matchExpressions:
+              - key: ingress-ready
+                operator: In
+                values:
+                  - "true"
+    service:
+      type: NodePort
