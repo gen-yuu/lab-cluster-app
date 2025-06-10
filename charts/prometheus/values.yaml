@@ -2,6 +2,9 @@
 # 例：Grafanaのダッシュボードにアクセスしやすくするため、Service Typeを変更
 ---
 grafana:
+  # CRDは別のアプリで管理するため、このチャートではインストールしない
+  crds:
+    enabled: false
   service:
     type: NodePort
-    nodePort: 30000 # 任意のポート番号
+    nodePort: 30000
