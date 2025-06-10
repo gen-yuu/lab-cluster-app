@@ -2,6 +2,8 @@
 # 例：Grafanaのダッシュボードにアクセスしやすくするため、Service Typeを変更
 ---
 grafana:
+  crds:
+    enabled: false
   service:
     type: NodePort
     nodePort: 30000 # 任意のポート番号
