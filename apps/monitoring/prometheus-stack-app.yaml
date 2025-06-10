@@ -1,18 +1,14 @@
-# apps/monitoring/prometheus-stack-app.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-stack
+  name: prometheus
   namespace: argocd
-  annotations:
-    # Sync Wave 1: CRDの後に同期させる
-    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
     repoURL: "https://github.com/gen-yuu/lab-cluster-app.git"
     targetRevision: HEAD
-    path: charts/prometheus #ラッパーチャート
+    path: charts/prometheus # ラッパーチャート
     helm:
       valueFiles:
         - values.yaml
@@ -23,3 +19,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Replace=true
