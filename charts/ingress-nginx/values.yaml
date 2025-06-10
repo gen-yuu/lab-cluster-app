@@ -12,5 +12,7 @@ ingress-nginx:
                 operator: In
                 values:
                   - "true"
+    admissionWebhooks:
+      enabled: true
     service:
       type: NodePort
