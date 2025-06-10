@@ -1,10 +1,12 @@
 # apps/prometheus/helm-values.yaml
 # 例：Grafanaのダッシュボードにアクセスしやすくするため、Service Typeを変更
 ---
-grafana:
+kube-prometheus-stack:
   # CRDは別のアプリで管理するため、このチャートではインストールしない
   crds:
     enabled: false
-  service:
-    type: NodePort
-    nodePort: 30000
+  grafana:
+    # CRDは別のアプリで管理するため、このチャートではインストールしない
+    service:
+      type: NodePort
+      nodePort: 30000
