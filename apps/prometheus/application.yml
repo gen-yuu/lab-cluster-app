@@ -4,18 +4,24 @@ kind: Application
 metadata:
   name: prometheus
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
+  sources:
+    # Helmチャート自体（リモートのHelmリポジトリ）
+    - repoURL: "https://prometheus-community.github.io/helm-charts"
+      chart: kube-prometheus-stack
+      targetRevision: "73.2.0"
+    # カスタムvaluesファイル
+    - repoURL: "https://github.com/gen-yuu/lab-cluster-app.git"
+      targetRevision: HEAD
+      ref: values
   source:
-  repoURL: "https://github.com/gen-yuu/lab-cluster-app.git"
-  targetRevision: HEAD
-  path: apps/prometheus
-  helm:
-    valueFiles:
-      - helm-values.yaml
     chart: kube-prometheus-stack
-    repoURL: "https://prometheus-community.github.io/helm-charts"
-    targetRevision: "73.2.0" # 2025-06-10
+    helm:
+      valueFiles:
+        - $values/apps/prometheus/helm-values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
