@@ -9,6 +9,9 @@ spec:
     repoURL: "https://github.com/gen-yuu/lab-cluster-app.git"
     targetRevision: HEAD
     path: charts/prometheus # ラッパーチャート
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
