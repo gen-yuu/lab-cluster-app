@@ -14,5 +14,6 @@ ingress-nginx:
                   - "true"
     admissionWebhooks:
       enabled: true
+      failurePolicy: Ignore
     service:
       type: NodePort
