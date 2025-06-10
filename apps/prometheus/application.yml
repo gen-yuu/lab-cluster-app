@@ -7,18 +7,21 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://prometheus-community.github.io/helm-charts"
+  repoURL: "https://github.com/gen-yuu/lab-cluster-app.git"
+  targetRevision: HEAD
+  path: apps/prometheus
+  helm:
+    valueFiles:
+      - helm-values.yaml
     chart: kube-prometheus-stack
+    repoURL: "https://prometheus-community.github.io/helm-charts"
     targetRevision: "73.2.0" # 2025-06-10
-    helm:
-      valueFiles:
-        - ./helm-values.yaml
   destination:
-    server: "https://kubernetes.default.svc" # このクラスタ自体を指す
-    namespace: monitoring # デプロイ先のNamespace
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
   syncPolicy:
     automated:
-      prune: true # Gitから定義が消えたら、クラスタからもリソースを削除する
-      selfHeal: true # クラスタ上の状態がGitと異なったら、自動でGitの状態に修正する
+      prune: true
+      selfHeal: true
     syncOptions:
-      - CreateNamespace=true # 'monitoring' Namespaceがなければ自動で作成
+      - CreateNamespace=true
