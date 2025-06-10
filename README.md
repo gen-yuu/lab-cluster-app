@@ -75,3 +75,33 @@ ansible-galaxy collection install kubernetes.core community.kubernetes
 各アプリケーションの細かい設定 (Helm の values) は、それぞれのロール内にある `files/<app>-values.yml` や `templates/` で管理しています。
 
 設定を変更した場合は、再度 Playbook を実行することでクラスタに反映されます。
+
+<!-- ```bash
+lab-cluster-app/
+├── root-app.yaml              # (LEVEL 1) 全てを管理するCEO
+│
+├── applications/              # (LEVEL 2) 各機能グループ（部長）の定義
+│   └── monitoring-stack.yaml
+│   └── ml-stack.yaml          # (将来用)
+│
+├── apps/                      # (LEVEL 3) 個別アプリ（チームメンバー）の定義
+│   ├── monitoring/
+│   │   ├── prometheus-app.yaml
+│   │   └── grafana-app.yaml
+│   │
+│   └── ml/                    # (将来用)
+│       └── jupyterhub-app.yaml
+│
+├── charts/                    # 各アプリのHelmラッパーチャート
+│   ├── prometheus/
+│   │   ├── Chart.yaml
+│   │   └── values.yaml
+│   └── grafana/
+│       ├── Chart.yaml
+│       └── values.yaml
+│
+└── manifests/                 # Helmを使わないアプリのマニフェスト (将来用)
+    └── jupyterhub/
+        ├── deployment.yaml
+        └── service.yaml
+``` -->
