@@ -12,8 +12,6 @@ ingress-nginx:
                 operator: In
                 values:
                   - "true"
-    admissionWebhooks:
-      enabled: true
-      failurePolicy: Ignore
     service:
-      type: NodePort
+      enabled: true
+      type: LoadBalancer
