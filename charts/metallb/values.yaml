@@ -1,4 +1,4 @@
-# このラッパーチャートからMetalLBチャート自体に渡すカスタム値
-# metallb:
-#   prometheus:
-#     enabled: true
+---
+metallb:
+  crds:
+    enabled: false

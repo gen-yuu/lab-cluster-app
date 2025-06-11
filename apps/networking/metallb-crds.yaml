@@ -1,0 +1,32 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb-crds
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  source:
+    repoURL: https://metallb.github.io/metallb
+    chart: metallb
+    targetRevision: 0.15.2
+    helm:
+      # valuesを使い、CRD以外の全てを無効化する
+      values: |
+        controller:
+          enabled: false
+        speaker:
+          enabled: false
+        crds:
+          enabled: true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: metallb-system
+  syncPolicy:
+    automated:
+      - prune: true
+      - selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

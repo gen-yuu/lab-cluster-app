@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: List
 items:
@@ -7,7 +8,7 @@ items:
       name: main-pool
       namespace: metallb-system
       annotations:
-        argocd.argoproj.io/sync-wave: "1"
+        argocd.argoproj.io/sync-wave: "2"
     spec:
       addresses:
         - 192.168.0.20
@@ -19,4 +20,4 @@ items:
       name: main-l2
       namespace: metallb-system
       annotations:
-        argocd.argoproj.io/sync-wave: "1"
+        argocd.argoproj.io/sync-wave: "2"
