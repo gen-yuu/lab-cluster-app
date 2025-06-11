@@ -6,6 +6,8 @@ items:
     metadata:
       name: main-pool
       namespace: metallb-system
+      annotations:
+        argocd.argoproj.io/sync-wave: "1"
     spec:
       addresses:
         - 192.168.0.20
@@ -16,3 +18,5 @@ items:
     metadata:
       name: main-l2
       namespace: metallb-system
+      annotations:
+        argocd.argoproj.io/sync-wave: "1"
