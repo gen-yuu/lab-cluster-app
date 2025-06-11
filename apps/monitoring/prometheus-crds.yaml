@@ -8,11 +8,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
-    targetRevision: 73.2.0
+    repoURL: "https://github.com/gen-yuu/lab-cluster-app.git"
+    targetRevision: HEAD
+    path: charts/prometheus
     helm:
-      # valuesを使い、CRD以外の全てのコンポーネントを無効化する
+      # CRD以外の全てのコンポーネントを無効化する
       values: |
         alertmanager:
           enabled: false
@@ -26,6 +26,8 @@ spec:
           enabled: false
         prometheusOperator:
           enabled: false
+        crds:
+          enabled: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring

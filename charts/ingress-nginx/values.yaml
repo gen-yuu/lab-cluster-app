@@ -1,7 +1,6 @@
 ---
 ingress-nginx:
   controller:
-    # NodeAffinityの設定
     nodeAffinity:
       # 優先的に配置
       preferredDuringSchedulingIgnoredDuringExecution:

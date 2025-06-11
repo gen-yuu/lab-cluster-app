@@ -6,7 +6,6 @@ kube-prometheus-stack:
   crds:
     enabled: false
   grafana:
-    # CRDは別のアプリで管理するため、このチャートではインストールしない
     service:
       type: NodePort
       nodePort: 30000
