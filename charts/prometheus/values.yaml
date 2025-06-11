@@ -5,6 +5,9 @@ kube-prometheus-stack:
   # CRDは別のアプリで管理するため、このチャートではインストールしない
   crds:
     enabled: false
+  prometheusOperator:
+    admissionWebhooks:
+      enabled: false
   grafana:
     service:
       type: NodePort
